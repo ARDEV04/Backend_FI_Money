@@ -4,12 +4,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authentication_route.js";
 import productRoutes from "./routes/prodRoute.js";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
 
 connectDB();
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/auth", authRoutes); 
 app.use("/api/products", productRoutes);
