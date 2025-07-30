@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+     
+      - MONGO_URI=mongodb+srv://monuranjan251:PQGt3gCFBSP48NKV@cluster0.xivgp12.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET=Qw9zZr8uY3bX2cP6fT7dE4vJrKmLqA1oNsRgWzXhUvYbNcRmTg
+      - PORT=5000
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

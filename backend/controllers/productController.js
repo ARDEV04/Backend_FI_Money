@@ -36,7 +36,21 @@ export const updatePrice = async (req, res) => {
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.json(product);
   } catch (err) {
-    res.status(500).json({ message: "Error updating quantity", err });
+    res.status(500).json({ message: "Error updating price", err });
+  }
+};
+
+// update product
+export const updateProduct = async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!product) return res.status(404).json({ message: "Product not found" });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ message: "Error updating product", err });
   }
 };
 
@@ -55,11 +69,34 @@ export const getProducts = async (req, res) => {
 
 // fetching product details by id
 export const getProductById = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({ message: "Product ID is required" });
+  }
+
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(id);
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.json(product);
   } catch (err) {
     res.status(500).json({ message: "Error fetching product", err });
+  }
+};
+
+// delete product
+export const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({ message: "Product ID is required" });
+  }
+
+  try {
+    const product = await Product.findByIdAndDelete(id);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+    res.json({ message: "Product deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Error deleting product", err });
   }
 };
