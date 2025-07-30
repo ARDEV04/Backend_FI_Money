@@ -23,26 +23,33 @@ This is a lightweight backend application for managing inventory for a small bus
 ```
 FIMONEY/
 ├── backend/
-│   ├── config/
-│   │   └── db.js                  # MongoDB connection config
-│   ├── controllers/
-│   │   ├── authController.js      # Handles user login and registration
-│   │   └── productController.js   # Product CRUD operations
-│   ├── images/
-│   │   └── postman_responses.png  # Screenshot of Postman API responses
-│   ├── middleware/
-│   │   └── middlewareAuth.js      # JWT verification middleware
-│   ├── models/
-│   │   ├── product.js             # Product Schema
-│   │   └── user.js                # User Schema
-│   ├── routes/
-│   │   ├── authentication_route.js  # Routes for login/register
-│   │   └── prodRoute.js             # Routes for product APIs
-│   ├── test/
-│   │   └── test_api.py            # Sample Python API test
-│   ├── .env                       # Environment variables (Mongo URI, JWT secret)
-│   ├── package.json               # Node dependencies
-│   └── server.js                  # Entry point for backend server
+│   ├── config/                 # MongoDB config
+│   ├── controllers/           # Auth & product logic
+│   ├── images/                # Postman screenshots
+│   ├── middleware/            # JWT auth middleware
+│   ├── models/                # Mongoose schemas
+│   ├── routes/                # Express routes
+│   ├── test/                  # test_api.py (Python tests)
+│   ├── .env                   # Env vars (Mongo, JWT)
+│   ├── Dockerfile             # Docker setup
+│   ├── server.js              # Entry point
+│   └── package*.json          # Node dependencies
+│
+├── frontend/
+│   ├── public/                # index.html
+│   ├── src/
+│   │   ├── api/               # Axios API calls
+│   │   ├── components/        # Navbar, ProductCard
+│   │   ├── pages/             # Login, Signup, Products
+│   │   ├── styles/            # CSS
+│   │   ├── utils/             # PrivateRoute
+│   │   └── App.jsx            # Main component
+│   ├── Dockerfile             # Frontend Docker config
+│   ├── .env                   # Frontend env (API base URL)
+│   └── package*.json          # React dependencies
+│
+├── docker-compose.yml         # Compose file for fullstack run
+└── README.md
 
 ```
 
